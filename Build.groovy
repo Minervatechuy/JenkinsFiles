@@ -5,6 +5,7 @@ pipeline{
     environment {
        REPOURL = "https://github.com/Minervatechuy/Admin-API.git"
        BRANCH = "main"
+       DOCKER_TAG = "1"
     }
 
     stages{
@@ -13,14 +14,15 @@ pipeline{
                 checkout([$class: 'GitSCM', branches: [[name: BRANCH]], extensions: [], userRemoteConfigs: [[url: REPOURL]]])
             }
         }
-        stage('Build artifact'){
+        stage('Build docker image'){
             agent {
-                label 'maven'
+                label 'main'
             }
             steps{
                 sh '''
-                    #mvn clean install
-                    /opt/apache-maven-3.6.3/bin/mvn package
+                    #docker build -t admin-api:${DOCKER_TAG} .
+                    #docker tag admin-api:${DOCKER_TAG} admin-api:latest
+                    docker-compose -d --build .
                 '''
             }
         }
