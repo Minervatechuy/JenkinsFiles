@@ -10,7 +10,7 @@ pipeline{
     stages{
         stage('Checkout'){
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '${BRANCH}']], extensions: [], userRemoteConfigs: [[url: '${REPOURL}']]])
+                checkout([$class: 'GitSCM', branches: [[name: ${BRANCH}]], extensions: [], userRemoteConfigs: [[url: ${REPOURL}]]])
             }
         }
         stage('Build artifact'){
