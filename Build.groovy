@@ -1,5 +1,7 @@
 pipeline{
-    
+    agent {
+        label 'main'
+    }
     environment {
        REPOURL = "https://github.com/Minervatechuy/Admin-API.git"
        BRANCH = "main"
