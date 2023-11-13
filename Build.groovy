@@ -1,6 +1,6 @@
 pipeline{
     agent {
-        label 'main'
+        label 'vm_host'
     }
     environment {
        REPOURL = "https://github.com/Minervatechuy/Admin-API.git"
@@ -16,7 +16,7 @@ pipeline{
         }
         stage('Build docker image'){
             agent {
-                label 'main'
+                label 'vm_host'
             }
             steps{
                 sh '''
