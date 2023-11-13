@@ -22,7 +22,7 @@ pipeline{
                 sh '''
                     #docker build -t admin-api:${DOCKER_TAG} .
                     #docker tag admin-api:${DOCKER_TAG} admin-api:latest
-                    docker-compose -d --build .
+                    docker-compose up -d --build
                 '''
             }
         }
