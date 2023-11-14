@@ -36,7 +36,7 @@ pipeline{
             steps{
                 sh '''
                     #docker login --username fabianl1980 --password Lautaro3101
-                    cat ~/Docker_password.txt | docker login --username fabianl1980 --password-stdin 
+                    cat ${WORKSPACE}/Docker_password.txt | docker login --username fabianl1980 --password-stdin 
                     docker push fabianl1980/web-flask-server
                     docker push fabianl1980/web-nginx-php
                 '''
