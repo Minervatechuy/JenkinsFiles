@@ -22,71 +22,37 @@ pipeline{
                 sh '''
                     #docker build -t admin-api:${DOCKER_TAG} .
                     #docker tag admin-api:${DOCKER_TAG} admin-api:latest
-                    pwd
                     cd ..
                     cd api
-                    pwd
                     #echo ${WORKSPACE}
                     docker-compose up -d --build
                 '''
             }
         }
-        stage('Upload to nexus'){
+        stage('Docker login and push'){
             agent {
-                label 'maven'
+                label 'vm_host'
             }
             steps{
-                script{
-                    pom = readMavenPom(file: 'pom.xml')
-                    filesByGlob = findFiles(glob: "target/*.${pom.packaging}")
-                    echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
-                    artifactPath = filesByGlob[0].path
-                    artifactExists = fileExists artifactPath
-
-                    if(artifactExists) {
-                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
-                        
-                        nexusArtifactUploader(
-                            nexusVersion: NEXUS_VERSION,
-                            protocol: NEXUS_PROTOCOL,
-                            nexusUrl: NEXUS_URL,
-                            groupId: pom.groupId,
-                            version: pom.version,
-                            repository: NEXUS_REPOSITORY,
-                            credentialsId: NEXUS_CREDENTIAL_ID,
-                            artifacts: [
-                                // Artifact generated such as .jar, .ear and .war files.
-                                [artifactId: pom.artifactId,
-                                classifier: '',
-                                file: artifactPath,
-                                type: pom.packaging],
-
-                                // Lets upload the pom.xml file for additional information for Transitive dependencies
-                                [artifactId: pom.artifactId,
-                                classifier: '',
-                                file: "pom.xml",
-                                type: "pom"]
-                            ]
-                        );
-
-                    } else {
-                        error "*** File: ${artifactPath}, could not be found";
-                    }
-                }
-
+                sh '''
+                    #docker login --username fabianl1980 --password Lautaro3101
+                    cat ~/Docker_password.txt | docker login --username fabianl1980 --password-stdin 
+                    docker push fabianl1980/web-flask-server
+                    docker push fabianl1980/web-nginx-php
+                '''
             }
         } //fin stage upload
         
         
         stage("Post") {
             agent {
-                label 'docker'
+                label 'vm_host'
             }
             steps {
                 sh '''
                     pwd
                     echo "Clean up workfolder"
-                    rm -Rf *
+                    #rm -Rf *
                 '''
             }
         } //fin stage post
