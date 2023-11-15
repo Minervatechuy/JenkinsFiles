@@ -34,16 +34,20 @@ pipeline{
                 label 'vm_host'
             }
             steps{
-                sh '''
-                    #docker login --username fabianl1980 --password Lautaro3101
-                    cat ${WORKSPACE}/Docker_password.txt | docker login --username fabianl1980 --password-stdin 
-                    docker tag fabianl1980/web-flask-server:latest fabianl1980/web-flask-server:${env.BUILD_NUMBER}
-                    docker tag fabianl1980/web-nginx-php:latest fabianl1980/web-nginx-php:${env.BUILD_NUMBER}
-                    docker push fabianl1980/web-flask-server:${env.BUILD_NUMBER}
-                    docker push fabianl1980/web-flask-server:latest
-                    docker push fabianl1980/web-nginx-php:latest
-                    docker push fabianl1980/web-nginx-php:${env.BUILD_NUMBER}
-                '''
+                script {
+                    def build_version="${env.BUILD_NUMBER}"
+                    def env.version=build_version
+                    sh '''
+                        #docker login --username fabianl1980 --password Lautaro3101
+                        cat ${WORKSPACE}/Docker_password.txt | docker login --username fabianl1980 --password-stdin 
+                        docker tag fabianl1980/web-flask-server:latest fabianl1980/web-flask-server:${env.version}
+                        docker tag fabianl1980/web-nginx-php:latest fabianl1980/web-nginx-php:${env.version}
+                        docker push fabianl1980/web-flask-server:${env.version}
+                        docker push fabianl1980/web-flask-server:latest
+                        docker push fabianl1980/web-nginx-php:latest
+                        docker push fabianl1980/web-nginx-php:${env.version}
+                    '''
+                }
             }
         } //fin stage upload
         
