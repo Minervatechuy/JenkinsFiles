@@ -59,7 +59,9 @@ pipeline{
             steps {
                 sh '''
                     echo "healthcheck api_python"                    
-                    curl -v -k http://172.31.35.158:5000 > ./healthcheck/test_api.txt
+                    #curl -v -k http://172.31.35.158:5000 | grep "HTTP/1.0"
+                    API_TEST_RESULT = $(curl -s -o /dev/null -I -w "%{http_code}" http://172.31.35.158:5000)
+                    echo ${API_TEST_RESULT}
                 '''
             }
         } //fin stage post
