@@ -36,16 +36,16 @@ pipeline{
             steps{
                 script {
                     def build_version="${env.BUILD_NUMBER}"
-                    env.version=build_version
+                    env.VERSION=build_version
                     sh '''
                         #docker login --username fabianl1980 --password Lautaro3101
                         cat ${WORKSPACE}/Docker_password.txt | docker login --username fabianl1980 --password-stdin 
-                        docker tag fabianl1980/web-flask-server:latest fabianl1980/web-flask-server:${env.version}
-                        docker tag fabianl1980/web-nginx-php:latest fabianl1980/web-nginx-php:${env.version}
-                        docker push fabianl1980/web-flask-server:${env.version}
+                        docker tag fabianl1980/web-flask-server:latest fabianl1980/web-flask-server:${VERSION}
+                        docker tag fabianl1980/web-nginx-php:latest fabianl1980/web-nginx-php:${VERSION}
+                        docker push fabianl1980/web-flask-server:${VERSION}
                         docker push fabianl1980/web-flask-server:latest
                         docker push fabianl1980/web-nginx-php:latest
-                        docker push fabianl1980/web-nginx-php:${env.version}
+                        docker push fabianl1980/web-nginx-php:${VERSION}
                     '''
                 }
             }
