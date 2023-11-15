@@ -36,7 +36,7 @@ pipeline{
             steps{
                 script {
                     def build_version="${env.BUILD_NUMBER}"
-                    def env.version=build_version
+                    env.version=build_version
                     sh '''
                         #docker login --username fabianl1980 --password Lautaro3101
                         cat ${WORKSPACE}/Docker_password.txt | docker login --username fabianl1980 --password-stdin 
