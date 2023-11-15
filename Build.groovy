@@ -37,8 +37,12 @@ pipeline{
                 sh '''
                     #docker login --username fabianl1980 --password Lautaro3101
                     cat ${WORKSPACE}/Docker_password.txt | docker login --username fabianl1980 --password-stdin 
-                    docker push fabianl1980/web-flask-server
-                    docker push fabianl1980/web-nginx-php
+                    docker tag fabianl1980/web-flask-server:latest fabianl1980/web-flask-server:${env.BUILD_NUMBER}
+                    docker tag fabianl1980/web-nginx-php:latest fabianl1980/web-nginx-php:${env.BUILD_NUMBER}
+                    docker push fabianl1980/web-flask-server:${env.BUILD_NUMBER}
+                    docker push fabianl1980/web-flask-server:latest
+                    docker push fabianl1980/web-nginx-php:latest
+                    docker push fabianl1980/web-nginx-php:${env.BUILD_NUMBER}
                 '''
             }
         } //fin stage upload
