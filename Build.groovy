@@ -61,10 +61,6 @@ pipeline{
                 sh '''
                     export API_getCalcsInfo=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getCalcsInfo' --header 'Content-Type: application/json' --data-raw '{  "user": "gabriela.perez@estudiantes.utec.edu.uy",  "pwd": "123"}')
                     echo $API_getCalcsInfo
-                '''
-            }
-            steps {
-                sh '''
                     export API_get_usuario=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/get_usuario' --header 'Content-Type: application/json' --data-raw '{  "usuario": "gabriela.perez@estudiantes.utec.edu.uy"}')
                     echo $API_get_usuario
                 '''
