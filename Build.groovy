@@ -63,7 +63,7 @@ pipeline{
                     #curl -v -k http://172.31.35.158:5000 | grep "HTTP/1.0"
                     export API_TEST_RESULT=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getCalcsInfo' --header 'Content-Type: application/json' --data-raw '{  "user": "gabriela.perez@estudiantes.utec.edu.uy",  "pwd": "123"}')
                     #API_TEST_RESULT = $(curl -s -o /dev/null -I -w "%{http_code}" http://172.31.35.158:5000)
-                    #echo "${API_TEST_RESULT}"
+                    echo $API_TEST_RESULT
                 '''
             }
         } //fin stage post
