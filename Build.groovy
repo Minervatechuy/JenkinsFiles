@@ -6,10 +6,8 @@ pipeline{
        REPOURL = "https://github.com/Minervatechuy/Admin-API.git"
        BRANCH = "main"
        DOCKER_TAG = "1"
-       POSTMAN_API_KEY = "PMAK-65567eafcce960003870427a-fee3182048a45d72204e02d895e7285fc9" // Ajusta el nombre de tu credencial
 
     }
-    tools {nodejs "NodeJS_Jenkins"}
 
     stages{
         stage('Checkout'){
@@ -63,7 +61,7 @@ pipeline{
                 sh '''
                     echo "healthcheck api_python"                    
                     #curl -v -k http://172.31.35.158:5000 | grep "HTTP/1.0"
-                    API_TEST_RESULT = `$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getCalcsInfo' --header 'Content-Type: application/json' --data-raw '{  "user": "gabriela.perez@estudiantes.utec.edu.uy",  "pwd": "123"}')`
+                    export API_TEST_RESULT=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getCalcsInfo' --header 'Content-Type: application/json' --data-raw '{  "user": "gabriela.perez@estudiantes.utec.edu.uy",  "pwd": "123"}')
                     #API_TEST_RESULT = $(curl -s -o /dev/null -I -w "%{http_code}" http://172.31.35.158:5000)
                     #echo "${API_TEST_RESULT}"
                 '''
