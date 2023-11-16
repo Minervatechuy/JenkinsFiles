@@ -91,7 +91,9 @@ pipeline{
                 label 'vm_host'
             }
             steps {
+                echo 'antes del curl'
                 sh 'curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh'
+                echo 'despues del curl'
             }
         }
 
