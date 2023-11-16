@@ -85,20 +85,29 @@ pipeline{
     
 
         stage('Install Postman CLI') {
-        steps {
-            sh 'curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh'
-        }
-        }
-
-        stage('Postman CLI Login') {
-        steps {
-            sh 'postman login --with-api-key $POSTMAN_API_KEY'
+            agent {
+                label 'vm_host'
+            }
+            steps {
+                sh 'curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh'
             }
         }
 
+        stage('Postman CLI Login') {
+            agent {
+                label 'vm_host'
+            }
+            steps {
+                sh 'postman login --with-api-key $POSTMAN_API_KEY'
+                }
+        }
+
         stage('Running collection') {
-      steps {
-        sh 'postman collection run "17594112-e1ce6c25-32be-4d33-93e1-7f67675a104d"'
+            agent {
+                label 'vm_host'
+            }
+            steps {
+                sh 'postman collection run "17594112-e1ce6c25-32be-4d33-93e1-7f67675a104d"'
       }
     }
   
