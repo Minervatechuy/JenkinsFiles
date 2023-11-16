@@ -59,10 +59,28 @@ pipeline{
             }
             steps {
                 sh '''
-                    export API_getCalcsInfo=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getCalcsInfo' --header 'Content-Type: application/json' --data-raw '{  "user": "gabriela.perez@estudiantes.utec.edu.uy",  "pwd": "123"}')
+                    export API_getCalcsInfo=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getCalcsInfo' --header 'Content-Type: application/json' --data-raw '{"user": "gabriela.perez@estudiantes.utec.edu.uy",  "pwd": "123"}')
                     echo $API_getCalcsInfo
-                    export API_get_usuario=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/get_usuario' --header 'Content-Type: application/json' --data-raw '{  "usuario": "gabriela.perez@estudiantes.utec.edu.uy"}')
+                    export API_get_usuario=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/get_usuario' --header 'Content-Type: application/json' --data-raw '{"usuario": "gabriela.perez@estudiantes.utec.edu.uy"}')
                     echo $API_get_usuario
+                    export API_get_UserEntities=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getUserEntities' --header 'Content-Type: application/json' --data-raw '{"usuario": "gabriela.perez@estudiantes.utec.edu.uy"}')
+                    echo $API_get_UserEntities
+                    export API_getStagesGeneralInfo=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getStagesGeneralInfo' --header 'Content-Type: application/json' --data '{"token": "_yu5d_nnQzQt9KedPWgY2Pr&UhxmX*EXkvUb"}')
+                    echo $API_getStagesGeneralInfo
+                    export API_getSpecificCalculatorInfo=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getSpecificCalculatorInfo' --header 'Content-Type: application/json' --data '{"token": "_yu5d_nnQzQt9KedPWgY2Pr&UhxmX*EXkvUb"}')
+                    echo $API_getSpecificCalculatorInfo
+                    export API_getCalcFormula=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getCalcFormula' --header 'Content-Type: application/json' --data '{"token": "_yu5d_nnQzQt9KedPWgY2Pr&UhxmX*EXkvUb"}')
+                    echo $API_getCalcFormula
+                    export API_getStageGeneralInfo=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getStageGeneralInfo' --header 'Content-Type: application/json' --data '{"identificador": "57"}')
+                    echo $API_getStageGeneralInfo
+                    export API_get_presupuestos_entidad=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/get_presupuestos_entidad' --header 'Content-Type: application/json' --data '{"entidad_id": "289578985663"}')
+                    echo $API_get_presupuestos_entidad
+                    export API_get_presupuestos_email=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/get_presupuestos_email' --header 'Content-Type: application/json' --data-raw '{"email": "gabriela.perez@estudiantes.utec.edu.uy"}')
+                    echo $API_get_presupuestos_email
+                    export API_get_presupuestos_calculadoras_nombre=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/get_presupuestos_calculadoras_nombre' --header 'Content-Type: application/json' --data-raw '{"usuario": "gabriela.perez@estudiantes.utec.edu.uy"}')
+                    echo $API_get_presupuestos_calculadoras_nombre
+                    export API_get_presupuestos_calculadora=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/get_presupuestos_calculadora' --header 'Content-Type: application/json' --data '{"token": "_yu5d_nnQzQt9KedPWgY2Pr&UhxmX*EXkvUb"}')
+                    echo $API_get_presupuestos_calculadora
                 '''
             }
         } //fin stage post
