@@ -6,6 +6,8 @@ pipeline{
        REPOURL = "https://github.com/Minervatechuy/Admin-API.git"
        BRANCH = "main"
        DOCKER_TAG = "1"
+       POSTMAN_API_KEY = credentials('jenkins_AK') // Ajusta el nombre de tu credencial
+
     }
     tools {nodejs "NodeJS_Jenkins"}
 
