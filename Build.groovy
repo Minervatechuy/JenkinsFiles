@@ -7,7 +7,7 @@ pipeline{
        BRANCH = "main"
        DOCKER_TAG = "1"
     }
-    tools {nodejs NodeJS_Jenkins}
+    tools {nodejs "NodeJS_Jenkins"}
 
     stages{
         stage('Checkout'){
