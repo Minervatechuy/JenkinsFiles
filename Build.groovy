@@ -52,19 +52,19 @@ pipeline{
         } //fin stage upload
 
 
-        stage("Test") {
-            agent {
-                label 'vm_host'
-            }
-            steps {
-                sh '''
-                    echo "healthcheck api_python"                    
-                    #curl -v -k http://172.31.35.158:5000 | grep "HTTP/1.0"
-                    API_TEST_RESULT = $(curl -s -o /dev/null -I -w "%{http_code}" http://172.31.35.158:5000)
-                    echo "${API_TEST_RESULT}"
-                '''
-            }
-        } //fin stage post
+        // stage("Test") {
+        //     agent {
+        //         label 'vm_host'
+        //     }
+        //     steps {
+        //         sh '''
+        //             echo "healthcheck api_python"                    
+        //             #curl -v -k http://172.31.35.158:5000 | grep "HTTP/1.0"
+        //             API_TEST_RESULT = $(curl -s -o /dev/null -I -w "%{http_code}" http://172.31.35.158:5000)
+        //             echo "${API_TEST_RESULT}"
+        //         '''
+        //     }
+        // } //fin stage post
 
         stage("Test-api") {
             agent {
