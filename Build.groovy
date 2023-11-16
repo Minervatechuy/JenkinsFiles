@@ -55,19 +55,20 @@ pipeline{
         } //fin stage upload
 
 
-        // stage("Test") {
-        //     agent {
-        //         label 'vm_host'
-        //     }
-        //     steps {
-        //         sh '''
-        //             echo "healthcheck api_python"                    
-        //             #curl -v -k http://172.31.35.158:5000 | grep "HTTP/1.0"
-        //             API_TEST_RESULT = $(curl -s -o /dev/null -I -w "%{http_code}" http://172.31.35.158:5000)
-        //             echo "${API_TEST_RESULT}"
-        //         '''
-        //     }
-        // } //fin stage post
+        stage("Test-api") {
+            agent {
+                label 'vm_host'
+            }
+            steps {
+                sh '''
+                    echo "healthcheck api_python"                    
+                    #curl -v -k http://172.31.35.158:5000 | grep "HTTP/1.0"
+                    API_TEST_RESULT = $(curl -s -o /dev/null -I -w "%{http_code}" --location 'http://172.31.35.158:5000/getCalcsInfo' --header 'Content-Type: application/json' --data-raw '{  "user": "gabriela.perez@estudiantes.utec.edu.uy",  "pwd": "123"}')
+                    #API_TEST_RESULT = $(curl -s -o /dev/null -I -w "%{http_code}" http://172.31.35.158:5000)
+                    #echo "${API_TEST_RESULT}"
+                '''
+            }
+        } //fin stage post
 
         // stage("Test-api") {
         //     agent {
@@ -82,40 +83,7 @@ pipeline{
         //         }
         //     }
         // } //fin stage post
-
-       
-    
-
-        stage('Install Postman CLI') {
-            agent {
-                label 'vm_host'
-            }
-            steps {
-                echo 'antes del curl'
-                sh 'curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh'
-                echo 'despues del curl'
-            }
-        }
-
-        stage('Postman CLI Login') {
-            agent {
-                label 'vm_host'
-            }
-            steps {
-                sh 'postman login --with-api-key $POSTMAN_API_KEY'
-                }
-        }
-
-        stage('Running collection') {
-            agent {
-                label 'vm_host'
-            }
-            steps {
-                sh 'postman collection run "17594112-e1ce6c25-32be-4d33-93e1-7f67675a104d"'
-      }
-    }
-  
-        
+ 
         stage("Post") {
             agent {
                 label 'vm_host'
