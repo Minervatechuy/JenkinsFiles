@@ -7,6 +7,7 @@ pipeline{
        BRANCH = "main"
        DOCKER_TAG = "1"
     }
+    tools {nodejs "{NodeJS_Jenkins}"}
 
     stages{
         stage('Checkout'){
@@ -81,7 +82,7 @@ pipeline{
         // } //fin stage post
 
        
-    tools {nodejs "{NodeJS_Jenkins}"}
+    
 
         stage('Install Postman CLI') {
         steps {
