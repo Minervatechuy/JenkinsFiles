@@ -66,19 +66,41 @@ pipeline{
         //     }
         // } //fin stage post
 
-        stage("Test-api") {
-            agent {
-                label 'vm_host'
+        // stage("Test-api") {
+        //     agent {
+        //         label 'vm_host'
+        //     }
+        //     steps {
+        //         script{
+        //             def COLLECTION_PATH = "https://api.postman.com/collections/17594112-e1ce6c25-32be-4d33-93e1-7f67675a104d?access_key=PMAT-01HFCAMEGKSP1Z3KJ1MKDQ07QC"
+        //             sh '''
+        //                 newman run COLLECTION_PATH
+        //             '''
+        //         }
+        //     }
+        // } //fin stage post
+
+       
+    tools {nodejs "{NodeJS_Jenkins}"}
+
+        stage('Install Postman CLI') {
+        steps {
+            sh 'curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh'
+        }
+        }
+
+        stage('Postman CLI Login') {
+        steps {
+            sh 'postman login --with-api-key $POSTMAN_API_KEY'
             }
-            steps {
-                script{
-                    def COLLECTION_PATH = "https://api.postman.com/collections/17594112-e1ce6c25-32be-4d33-93e1-7f67675a104d?access_key=PMAT-01HFCAMEGKSP1Z3KJ1MKDQ07QC"
-                    sh '''
-                        newman run COLLECTION_PATH
-                    '''
-                }
-            }
-        } //fin stage post
+        }
+
+        stage('Running collection') {
+      steps {
+        sh 'postman collection run "17594112-e1ce6c25-32be-4d33-93e1-7f67675a104d"'
+      }
+    }
+  
         
         stage("Post") {
             agent {
