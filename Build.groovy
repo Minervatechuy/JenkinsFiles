@@ -53,35 +53,25 @@ pipeline{
         } //fin stage upload
 
 
-        stage("Test-api") {
+        stage("API-Test-Automation") {
             agent {
                 label 'vm_host'
             }
             steps {
                 sh '''
-                    echo "healthcheck api_python"                    
-                    #curl -v -k http://172.31.35.158:5000 | grep "HTTP/1.0"
-                    export API_TEST_RESULT=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getCalcsInfo' --header 'Content-Type: application/json' --data-raw '{  "user": "gabriela.perez@estudiantes.utec.edu.uy",  "pwd": "123"}')
-                    #API_TEST_RESULT = $(curl -s -o /dev/null -I -w "%{http_code}" http://172.31.35.158:5000)
-                    echo $API_TEST_RESULT
+                    export API_getCalcsInfo=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getCalcsInfo' --header 'Content-Type: application/json' --data-raw '{  "user": "gabriela.perez@estudiantes.utec.edu.uy",  "pwd": "123"}')
+                    echo $API_getCalcsInfo
+                '''
+            }
+            steps {
+                sh '''
+                    export API_get_usuario=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/get_usuario' --header 'Content-Type: application/json' --data-raw '{  "usuario": "gabriela.perez@estudiantes.utec.edu.uy"}')
+                    echo $API_get_usuario
                 '''
             }
         } //fin stage post
 
-        // stage("Test-api") {
-        //     agent {
-        //         label 'vm_host'
-        //     }
-        //     steps {
-        //         script{
-        //             def COLLECTION_PATH = "https://api.postman.com/collections/17594112-e1ce6c25-32be-4d33-93e1-7f67675a104d?access_key=PMAT-01HFCAMEGKSP1Z3KJ1MKDQ07QC"
-        //             sh '''
-        //                 newman run COLLECTION_PATH
-        //             '''
-        //         }
-        //     }
-        // } //fin stage post
- 
+         
         stage("Post") {
             agent {
                 label 'vm_host'
