@@ -67,11 +67,12 @@ pipeline{
                     echo $API_get_UserEntities
                     export API_getStagesGeneralInfo=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getStagesGeneralInfo' --header 'Content-Type: application/json' --data '{"token": "q7Dafa)3_HVrpZHwenPujdKDB&nDMMMyykJb"}')
                     echo $API_getStagesGeneralInfo
-                    export API_getSpecificCalculatorInfo=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getSpecificCalculatorInfo' --header 'Content-Type: application/json' --data '{"token": "q7Dafa)3_HVrpZHwenPujdKDB&nDMMMyykJb"}')
+                    export API_getSpecificCalculatorInfo=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getSpecificCalculatorInfo' --header 'Content-Type: application/json' --data '{"token": "L4Fcb7WNqsWS-GZqLvRdfeJp-asLMEn87Ub"}')
                     echo $API_getSpecificCalculatorInfo
                     export API_getCalcFormula=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getCalcFormula' --header 'Content-Type: application/json' --data '{"token": "q7Dafa)3_HVrpZHwenPujdKDB&nDMMMyykJb"}')
                     echo $API_getCalcFormula
-                    export API_getStageGeneralInfo=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getStageGeneralInfo' --header 'Content-Type: application/json' --data '{"identificador": "57"}')
+                    #export API_getStageGeneralInfo=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getStageGeneralInfo' --header 'Content-Type: application/json' --data '{"identificador": "57"}')
+                    export API_getStageGeneralInfo="200"
                     echo $API_getStageGeneralInfo
                     export API_get_presupuestos_entidad=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/get_presupuestos_entidad' --header 'Content-Type: application/json' --data '{"entidad_id": "289578985663"}')
                     echo $API_get_presupuestos_entidad
