@@ -94,6 +94,7 @@ pipeline{
                     echo $API_get_presupuestos_email
                     echo $API_get_presupuestos_calculadoras_nombre
                     echo $API_get_presupuestos_calculadora
+                    echo ${VERSION}
                     if [ $API_getCalcsInfo==$OK && $API_get_usuario==$OK && $API_get_UserEntities==$OK && $API_getStagesGeneralInfo==$OK && $API_getSpecificCalculatorInfo==$OK && $API_getCalcFormula==$OK && $API_getStageGeneralInfo==$OK && $API_get_presupuestos_entidad==$OK && $API_get_presupuestos_email==$OK && $API_get_presupuestos_calculadoras_nombre==$OK && $API_get_presupuestos_calculadora==$OK]
                     then
                             echo "Esta todo OK"
