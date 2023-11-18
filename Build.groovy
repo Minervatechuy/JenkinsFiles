@@ -15,7 +15,7 @@ pipeline{
                 checkout([$class: 'GitSCM', branches: [[name: BRANCH]], extensions: [], userRemoteConfigs: [[url: REPOURL]]])
             }
         }
-        stage('Build docker image'){
+        stage('Build and deploy test version'){
             agent {
                 label 'vm_host'
             }
@@ -85,6 +85,23 @@ pipeline{
             }
         } //fin stage post
 
+        stage("Deploy in Prod") {
+            agent {
+                label 'vm_host'
+            }
+            steps {
+                sh '''
+                    pwd
+                    export OK="200"
+                    if [ $API_getCalcsInfo==$OK && $API_get_usuario==$OK && $API_get_UserEntities==$OK && $API_getStagesGeneralInfo==$OK && $API_getSpecificCalculatorInfo==$OK && $API_getCalcFormula==$OK && $API_getStageGeneralInfo==$OK && $API_get_presupuestos_entidad==$OK && $API_get_presupuestos_email==$OK && $API_get_presupuestos_calculadoras_nombre==$OK && $API_get_presupuestos_calculadora==$OK]
+                    then
+                            echo "Esta todo OK"
+                    else
+                            echo "Al menos una falló"
+                    fi
+                '''
+            }
+        } //fin stage post
          
         stage("Post") {
             agent {
