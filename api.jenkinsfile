@@ -75,7 +75,7 @@ pipeline{
                     export API_get_presupuestos_calculadora=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/get_presupuestos_calculadora' --header 'Content-Type: application/json' --data '{"token": "q7Dafa)3_HVrpZHwenPujdKDB&nDMMMyykJb"}')
                 '''
                 //env.API_getCalcsInfo=API_getCalcsInfo
-                def API_getCalcsInfo=sh returnStdout:true script: '''
+                def API_getCalcsInfo=sh returnStdout:true, script: '''
                     curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getCalcsInfo' --header 'Content-Type: application/json' --data-raw '{"user": "gabriela.perez@estudiantes.utec.edu.uy",  "pwd": "123"}'
                 '''
                 env.API_getCalcsInfo=API_getCalcsInfo
