@@ -1,3 +1,4 @@
+def API_getCalcsInfo
 pipeline{
     agent {
         label 'vm_host'
