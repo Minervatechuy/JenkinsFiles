@@ -92,7 +92,7 @@ pipeline{
                 label 'vm_host'
             }
             steps {
-                echo env.API_getCalcsInfo
+                println(env.API_getCalcsInfo)
                 sh '''
                     pwd
                     export OK="200"
