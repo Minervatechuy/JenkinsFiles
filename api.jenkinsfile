@@ -82,6 +82,8 @@ pipeline{
                         curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getCalcsInfo' --header 'Content-Type: application/json' --data-raw '{"user": "gabriela.perez@estudiantes.utec.edu.uy",  "pwd": "123"}'
                     '''
                     env.API_getCalcsInfo=API_getCalcsInfo
+                    println(env.API_getCalcsInfo)
+
                 }
 
             }
@@ -92,7 +94,6 @@ pipeline{
                 label 'vm_host'
             }
             steps {
-                println(env.API_getCalcsInfo)
                 sh '''
                     pwd
                     echo ${API_getCalcsInfo}
