@@ -95,6 +95,7 @@ pipeline{
                 println(env.API_getCalcsInfo)
                 sh '''
                     pwd
+                    echo ${API_getCalcsInfo}
                     export OK="200"
                     echo $API_getCalcsInfo
                     echo $API_get_usuario
