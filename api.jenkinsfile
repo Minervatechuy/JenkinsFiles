@@ -79,17 +79,17 @@ pipeline{
                                 echo "Esta todo OK"
                         else
                                 echo "Al menos una falló"
-                                echo $API_getCalcsInfo
-                                echo $API_get_usuario
-                                echo $API_get_UserEntities
-                                echo $API_getStagesGeneralInfo
-                                echo $API_getSpecificCalculatorInfo
-                                echo $API_getCalcFormula
-                                echo $API_getStageGeneralInfo
-                                echo $API_get_presupuestos_entidad
-                                echo $API_get_presupuestos_email
-                                echo $API_get_presupuestos_calculadoras_nombre
-                                echo $API_get_presupuestos_calculadora
+                                echo API_getCalcsInfo $API_getCalcsInfo
+                                echo API_get_usuario $API_get_usuario
+                                echo API_get_UserEntities $API_get_UserEntities
+                                echo API_getStagesGeneralInfo $API_getStagesGeneralInfo
+                                echo API_getSpecificCalculatorInfo $API_getSpecificCalculatorInfo
+                                echo API_getCalcFormula $API_getCalcFormula
+                                echo API_getStageGeneralInfo $API_getStageGeneralInfo
+                                echo API_get_presupuestos_entidad $API_get_presupuestos_entidad
+                                echo API_get_presupuestos_email $API_get_presupuestos_email
+                                echo API_get_presupuestos_calculadoras_nombre $API_get_presupuestos_calculadoras_nombre
+                                echo API_get_presupuestos_calculadora $API_get_presupuestos_calculadora
 
                         fi
                     '''
