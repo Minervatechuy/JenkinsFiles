@@ -24,7 +24,7 @@ pipeline{
                     #docker build -t admin-api:${DOCKER_TAG} .
                     #docker tag admin-api:${DOCKER_TAG} admin-api:latest
                     cd ..
-                    cd api
+                    cd ${JOB_NAME}
                     #echo ${WORKSPACE}
                     docker-compose up -d --build
                 '''
@@ -141,7 +141,6 @@ pipeline{
                 sh '''
                     pwd
                     cd .. 
-                    #cd api
                     cd ${JOB_NAME}
                     docker-compose down -v
                     echo "Clean up workfolder"
