@@ -67,19 +67,19 @@ pipeline{
                         docker start web
                         docker start api-webserver-1
                         sleep 3
-                        export API_getCalcsInfo=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getCalcsInfo' --header 'Content-Type: application/json' --data-raw '{"user": "gabriela.perez@estudiantes.utec.edu.uy",  "pwd": "123"}')
-                        export API_get_usuario=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/get_usuario' --header 'Content-Type: application/json' --data-raw '{"usuario": "gabriela.perez@estudiantes.utec.edu.uy"}')
-                        export API_get_UserEntities=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getUserEntities' --header 'Content-Type: application/json' --data-raw '{"usuario": "gabriela.perez@estudiantes.utec.edu.uy"}')
-                        export API_getStagesGeneralInfo=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getStagesGeneralInfo' --header 'Content-Type: application/json' --data '{"token": "q7Dafa)3_HVrpZHwenPujdKDB&nDMMMyykJb"}')
-                        export API_getSpecificCalculatorInfo=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getSpecificCalculatorInfo' --header 'Content-Type: application/json' --data '{"token": "L4Fcb7WNqsWS-GZqLvRdfeJp-asLMEn87Ub"}')
+                        export API_getCalcsInfo=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://10.0.0.136:5000/getCalcsInfo' --header 'Content-Type: application/json' --data-raw '{"user": "gabriela.perez@estudiantes.utec.edu.uy",  "pwd": "123"}')
+                        export API_get_usuario=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://10.0.0.136:5000/get_usuario' --header 'Content-Type: application/json' --data-raw '{"usuario": "gabriela.perez@estudiantes.utec.edu.uy"}')
+                        export API_get_UserEntities=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://10.0.0.136:5000/getUserEntities' --header 'Content-Type: application/json' --data-raw '{"usuario": "gabriela.perez@estudiantes.utec.edu.uy"}')
+                        export API_getStagesGeneralInfo=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://10.0.0.136:5000/getStagesGeneralInfo' --header 'Content-Type: application/json' --data '{"token": "q7Dafa)3_HVrpZHwenPujdKDB&nDMMMyykJb"}')
+                        export API_getSpecificCalculatorInfo=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://10.0.0.136:5000/getSpecificCalculatorInfo' --header 'Content-Type: application/json' --data '{"token": "L4Fcb7WNqsWS-GZqLvRdfeJp-asLMEn87Ub"}')
                         export API_getSpecificCalculatorInfo="200"
-                        export API_getCalcFormula=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getCalcFormula' --header 'Content-Type: application/json' --data '{"token": "q7Dafa)3_HVrpZHwenPujdKDB&nDMMMyykJb"}')
-                        export API_getStageGeneralInfo=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getStageGeneralInfo' --header 'Content-Type: application/json' --data '{"identificador": "57"}')
+                        export API_getCalcFormula=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://10.0.0.136:5000/getCalcFormula' --header 'Content-Type: application/json' --data '{"token": "q7Dafa)3_HVrpZHwenPujdKDB&nDMMMyykJb"}')
+                        export API_getStageGeneralInfo=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://10.0.0.136:5000/getStageGeneralInfo' --header 'Content-Type: application/json' --data '{"identificador": "57"}')
                         export API_getStageGeneralInfo="200"
-                        export API_get_presupuestos_entidad=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/get_presupuestos_entidad' --header 'Content-Type: application/json' --data '{"entidad_id": "289578985663"}')
-                        export API_get_presupuestos_email=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/get_presupuestos_email' --header 'Content-Type: application/json' --data-raw '{"email": "gabriela.perez@estudiantes.utec.edu.uy"}')
-                        export API_get_presupuestos_calculadoras_nombre=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/get_presupuestos_calculadoras_nombre' --header 'Content-Type: application/json' --data-raw '{"usuario": "gabriela.perez@estudiantes.utec.edu.uy"}')
-                        export API_get_presupuestos_calculadora=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/get_presupuestos_calculadora' --header 'Content-Type: application/json' --data '{"token": "q7Dafa)3_HVrpZHwenPujdKDB&nDMMMyykJb"}')
+                        export API_get_presupuestos_entidad=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://10.0.0.136:5000/get_presupuestos_entidad' --header 'Content-Type: application/json' --data '{"entidad_id": "289578985663"}')
+                        export API_get_presupuestos_email=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://10.0.0.136:5000/get_presupuestos_email' --header 'Content-Type: application/json' --data-raw '{"email": "gabriela.perez@estudiantes.utec.edu.uy"}')
+                        export API_get_presupuestos_calculadoras_nombre=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://10.0.0.136:5000/get_presupuestos_calculadoras_nombre' --header 'Content-Type: application/json' --data-raw '{"usuario": "gabriela.perez@estudiantes.utec.edu.uy"}')
+                        export API_get_presupuestos_calculadora=$(curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://10.0.0.136:5000/get_presupuestos_calculadora' --header 'Content-Type: application/json' --data '{"token": "q7Dafa)3_HVrpZHwenPujdKDB&nDMMMyykJb"}')
                         export OK="200"
                     
                         if [ $API_getCalcsInfo==$OK && $API_get_usuario==$OK && $API_get_UserEntities==$OK && $API_getStagesGeneralInfo==$OK && $API_getSpecificCalculatorInfo==$OK && $API_getCalcFormula==$OK && $API_getStageGeneralInfo==$OK && $API_get_presupuestos_entidad==$OK && $API_get_presupuestos_email==$OK && $API_get_presupuestos_calculadoras_nombre==$OK && $API_get_presupuestos_calculadora==$OK]
@@ -103,10 +103,10 @@ pipeline{
                     '''
                 //env.API_getCalcsInfo=API_getCalcsInfo
                 //def API_getCalcsInfo=sh returnStdout:true, script: '''
-                //    curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getCalcsInfo' --header 'Content-Type: application/json' --data-raw '{"user": "gabriela.perez@estudiantes.utec.edu.uy",  "pwd": "123"}'
+                //    curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://10.0.0.136:5000/getCalcsInfo' --header 'Content-Type: application/json' --data-raw '{"user": "gabriela.perez@estudiantes.utec.edu.uy",  "pwd": "123"}'
                 //'''
                     // def API_getCalcsInfo=sh ''' 
-                    //     curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://172.31.35.158:5000/getCalcsInfo' --header 'Content-Type: application/json' --data-raw '{"user": "gabriela.perez@estudiantes.utec.edu.uy",  "pwd": "123"}'
+                    //     curl -s -X POST -o /dev/null -w "%{http_code}" --location 'http://10.0.0.136:5000/getCalcsInfo' --header 'Content-Type: application/json' --data-raw '{"user": "gabriela.perez@estudiantes.utec.edu.uy",  "pwd": "123"}'
                     // '''
                     // env.API_getCalcsInfo=API_getCalcsInfo
                     // println(env.API_getCalcsInfo)
