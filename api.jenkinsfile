@@ -141,7 +141,8 @@ pipeline{
                 sh '''
                     pwd
                     cd .. 
-                    cd api
+                    #cd api
+                    cd ${JOB_NAME}
                     docker-compose down -v
                     echo "Clean up workfolder"
                     rm -Rf *
