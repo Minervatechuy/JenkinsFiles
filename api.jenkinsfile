@@ -140,6 +140,8 @@ pipeline{
             steps {
                 sh '''
                     pwd
+                    cd .. 
+                    cd api
                     docker-compose down -v
                     echo "Clean up workfolder"
                     rm -Rf *
