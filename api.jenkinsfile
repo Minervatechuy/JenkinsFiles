@@ -130,6 +130,7 @@ pipeline{
                     docker-compose up -d
                     sleep 5
                     docker-compose restart
+                    docker update --restart always Phpmyadmin
                 '''
             }
             
