@@ -127,7 +127,7 @@ pipeline{
                     cat ${WORKSPACE}/Docker_password.txt | docker login --username fabianl1980 --password-stdin                     
                     docker pull fabianl1980/web-flask-server:latest
                     docker pull fabianl1980/web-nginx-php:latest
-                    docker-compose up -d
+                    docker-compose up -d --remove-orphans                    
                     sleep 5
                     docker-compose restart
                     docker update --restart always Phpmyadmin
